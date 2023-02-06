@@ -6,8 +6,8 @@ class SignInScreenController extends GetxController {
   RxBool isSuccessStatus = false.obs;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  TextEditingController emailFieldController = TextEditingController();
-  TextEditingController passwordFieldController = TextEditingController();
+  TextEditingController emailFieldController = TextEditingController(text: "abc@gmail.com");
+  TextEditingController passwordFieldController = TextEditingController(text: "123456789");
 
   RxBool isPasswordObscure = true.obs;
 

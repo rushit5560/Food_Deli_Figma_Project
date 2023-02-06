@@ -4,7 +4,6 @@ class AppMessage {
   static String signUp = "Sign Up";
   static String verificationCode = "Verification Code";
 
-
   // TextField Label Text
   static String emailAddressLabel = "Email Address";
   static String passwordLabel = "Password";
@@ -21,6 +20,25 @@ class AppMessage {
   static String homeAddressHint = "Home Address";
   static String phoneNumberHint = "Phone Number";
 
+// otp verification
+  static String resendTheCode = "Resend the code :";
+  static String varification = "Verification";
+  // profile
+  static String profile = "Profile";
+  static String earnedToday = "Earned Today";
+  static String rupees = "\$259.90";
+  static String totalTrip = "Total Trip";
+  static String timeOnline = "Time Online";
+  static String totalDistance = "Total Distance";
+  static String ongoingTrip = "Ongoing Trip";
+  static String wallet = "Wallet";
+  static String history = "History";
+  static String call = "Call";
+
+  static String amountPaid = "Amount Paid";
+  static String time = "Time";
+
+
 
   // Show Text
   static String byLogin = "By login you agree to";
@@ -29,7 +47,8 @@ class AppMessage {
   static String and = "and";
   static String privacyPolicy = "Privacy Policy";
   static String forgotPassword = "Forgot Password ?";
-  static String verificationScreenText = "Please enter below details to create account.";
+  static String verificationScreenText =
+      "Please enter below details to create account.";
   static String donTHaveAccountText = "Don't have an account ? ";
 
   // Validations

@@ -6,6 +6,7 @@ import 'package:food_deli_driver/common_widgets/common_loader.dart';
 import 'package:food_deli_driver/common_widgets/text_form_field_module.dart';
 import 'package:food_deli_driver/controllers/sign_in_screen_controller.dart';
 import 'package:food_deli_driver/screens/otp_verification_screen/otp_verification_screen.dart';
+import 'package:food_deli_driver/screens/profile_screen/profile_screen.dart';
 import 'package:food_deli_driver/screens/sign_up_screen/sign_up_screen.dart';
 import 'package:food_deli_driver/utils/extensions.dart';
 import 'package:food_deli_driver/utils/messaging.dart';
@@ -15,6 +16,7 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/gestures.dart';
 
+// ignore: must_be_immutable
 class SignInScreen extends StatelessWidget {
   SignInScreen({Key? key}) : super(key: key);
   SignInScreenController signInScreenController =
@@ -29,21 +31,22 @@ class SignInScreen extends StatelessWidget {
           () => signInScreenController.isLoading.value
               ? CommonLoader().showLoader()
               : Form(
-            key: signInScreenController.formKey,
-            child: Column(
+                  key: signInScreenController.formKey,
+                  child: Column(
                     // crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       /// AppBar - Common Module
                       AppBarTitleModule(headerText: AppMessage.logIn)
                           .commonSymmetricPadding(horizontal: 10, vertical: 10),
-                      Divider(thickness: 1, color: Colors.grey.withOpacity(0.3)),
-
+                      Divider(
+                          thickness: 1, color: Colors.grey.withOpacity(0.3)),
 
                       Expanded(
                         child: SingleChildScrollView(
                           child: Column(
                             children: [
                               SizedBox(height: 6.h),
+
                               /// Email Field
                               CommonTextFormFieldModule(
                                 controller:
@@ -55,6 +58,7 @@ class SignInScreen extends StatelessWidget {
                                     FieldValidation().validateEmail(value!),
                               ),
                               SizedBox(height: 6.h),
+
                               /// Password Field
                               CommonTextFormFieldModule(
                                 controller: signInScreenController
@@ -74,7 +78,8 @@ class SignInScreen extends StatelessWidget {
                                     signInScreenController.loadUI();
                                   },
                                   icon: Icon(
-                                    signInScreenController.isPasswordObscure.value
+                                    signInScreenController
+                                            .isPasswordObscure.value
                                         ? Icons.visibility
                                         : Icons.visibility_off,
                                     color: Colors.grey.shade700,
@@ -95,9 +100,11 @@ class SignInScreen extends StatelessWidget {
                                   children: [
                                     TextSpan(
                                       text: " ${AppMessage.tAndC} ",
-                                      recognizer: TapGestureRecognizer()..onTap = () {
-                                        Fluttertoast.showToast(msg: "Coming Soon!!");
-                                      },
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          Fluttertoast.showToast(
+                                              msg: "Coming Soon!!");
+                                        },
                                       style: TextStyleConfig.textStyle(
                                         textColor: Colors.blue,
                                         fontWeight: FontWeight.w600,
@@ -114,9 +121,11 @@ class SignInScreen extends StatelessWidget {
                                     ),
                                     TextSpan(
                                       text: " ${AppMessage.privacyPolicy}",
-                                      recognizer: TapGestureRecognizer()..onTap = () {
-                                        Fluttertoast.showToast(msg: "Coming Soon!!");
-                                      },
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          Fluttertoast.showToast(
+                                              msg: "Coming Soon!!");
+                                        },
                                       style: TextStyleConfig.textStyle(
                                         textColor: Colors.blue,
                                         fontWeight: FontWeight.w600,
@@ -132,7 +141,8 @@ class SignInScreen extends StatelessWidget {
                                 children: [
                                   GestureDetector(
                                     onTap: () {
-                                      Fluttertoast.showToast(msg: "Coming Soon!!");
+                                      Fluttertoast.showToast(
+                                          msg: "Coming Soon!!");
                                     },
                                     child: Text(
                                       AppMessage.forgotPassword,
@@ -146,12 +156,16 @@ class SignInScreen extends StatelessWidget {
                                 ],
                               ),
                               SizedBox(height: 6.h),
+
                               /// Login Button - Common Module
                               CommonButtonModule(
                                 onTap: () {
-                                  if(signInScreenController.formKey.currentState!.validate()) {
-                                    signInScreenController.formKey.currentState!.reset();
-                                    // Get.to(()=> OtpVerificationScreen());
+                                  if (signInScreenController
+                                      .formKey.currentState!
+                                      .validate()) {
+                                    signInScreenController.formKey.currentState!
+                                        .reset();
+                                    Get.to(() => ProfileScreen());
                                   }
                                 },
                                 labelText: AppMessage.logIn,
@@ -171,11 +185,12 @@ class SignInScreen extends StatelessWidget {
                                   children: [
                                     TextSpan(
                                       text: " ${AppMessage.signUp} ",
-                                      recognizer: TapGestureRecognizer()..onTap = () {
-                                        Get.to(()=> SignUpScreen());
-                                      },
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          Get.to(() => SignUpScreen());
+                                        },
                                       onEnter: (event) {
-                                        Get.to(()=> SignUpScreen());
+                                        Get.to(() => SignUpScreen());
                                       },
                                       style: TextStyleConfig.textStyle(
                                         textColor: Colors.blue,
@@ -192,7 +207,7 @@ class SignInScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-              ),
+                ),
         ),
       ),
     );

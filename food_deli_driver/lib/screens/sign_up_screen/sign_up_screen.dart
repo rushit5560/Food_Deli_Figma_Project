@@ -17,7 +17,8 @@ import 'package:sizer/sizer.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);
-  SignUpScreenController signUpScreenController = Get.put(SignUpScreenController());
+  SignUpScreenController signUpScreenController =
+      Get.put(SignUpScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -26,128 +27,135 @@ class SignUpScreen extends StatelessWidget {
       body: SafeArea(
         child: Obx(
           () => signUpScreenController.isLoading.value
-          ? CommonLoader().showLoader()
-          : Column(
-            children: [
-              /// AppBar - Common Module
-              AppBarWithBackButtonModule(
-                headerText: AppMessage.signUp,
-                backButtonOnTap: () => Get.back(),
-              ).commonSymmetricPadding(horizontal: 10, vertical: 10),
-              Divider(thickness: 1, color: Colors.grey.withOpacity(0.3)),
+              ? CommonLoader().showLoader()
+              : Column(
+                  children: [
+                    /// AppBar - Common Module
+                    AppBarWithBackButtonModule(
+                      headerText: AppMessage.signUp,
+                      backButtonOnTap: () => Get.back(),
+                    ).commonSymmetricPadding(horizontal: 10, vertical: 10),
+                    Divider(thickness: 1, color: Colors.grey.withOpacity(0.3)),
 
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Form(
-                    key: signUpScreenController.formKey,
-                    child: Column(
-                      children: [
-                        SizedBox(height: 3.h),
-                        CommonTextFormFieldModule(
-                          controller: signUpScreenController.firstNameFieldController,
-                          labelText: AppMessage.firstNameLabel,
-                          hintText: AppMessage.firstNameHint,
-                          keyboardType: TextInputType.text,
-                          validate: (value) => FieldValidation().validateFirstName(value!),
-                        ),
-
-                        SizedBox(height: 3.h),
-                        CommonTextFormFieldModule(
-                          controller: signUpScreenController.lastNameFieldController,
-                          labelText: AppMessage.lastNameLabel,
-                          hintText: AppMessage.lastNameHint,
-                          keyboardType: TextInputType.text,
-                          validate: (value) => FieldValidation().validateLastName(value!),
-                        ),
-
-
-                        SizedBox(height: 3.h),
-                        CommonTextFormFieldModule(
-                          controller: signUpScreenController.homeAddressFieldController,
-                          labelText: AppMessage.homeAddressLabel,
-                          hintText: AppMessage.homeAddressHint,
-                          keyboardType: TextInputType.text,
-                          validate: (value) => FieldValidation().validateHomeAddress(value!),
-                        ),
-
-
-                        SizedBox(height: 3.h),
-                        CommonTextFormFieldModule(
-                          controller: signUpScreenController.phoneNumberFieldController,
-                          labelText: AppMessage.phoneNumberLabel,
-                          hintText: AppMessage.phoneNumberHint,
-                          keyboardType: TextInputType.phone,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly,
-                          ],
-                          maxLength: 10,
-                          validate: (value) => FieldValidation().validateMobileNumber(value!),
-                        ),
-
-                        SizedBox(height: 3.h),
-                        RichText(
-                          textAlign: TextAlign.left,
-                          maxLines: null,
-                          text: TextSpan(
-                            text: AppMessage.bySignUp,
-                            style: TextStyleConfig.textStyle(
-                              // fontWeight: FontWeight.w600,
-                              textColor: Colors.grey.shade400,
-                              fontSize: 10.sp,
-                            ),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Form(
+                          key: signUpScreenController.formKey,
+                          child: Column(
                             children: [
-                              TextSpan(
-                                text: " ${AppMessage.tAndC} ",
-                                recognizer: TapGestureRecognizer()..onTap = () {
-                                  Fluttertoast.showToast(msg: "Coming Soon!!");
-                                },
-                                style: TextStyleConfig.textStyle(
-                                  textColor: Colors.blue,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 10.sp,
+                              SizedBox(height: 3.h),
+                              CommonTextFormFieldModule(
+                                controller: signUpScreenController
+                                    .firstNameFieldController,
+                                labelText: AppMessage.firstNameLabel,
+                                hintText: AppMessage.firstNameHint,
+                                keyboardType: TextInputType.text,
+                                validate: (value) =>
+                                    FieldValidation().validateFirstName(value!),
+                              ),
+                              SizedBox(height: 3.h),
+                              CommonTextFormFieldModule(
+                                controller: signUpScreenController
+                                    .lastNameFieldController,
+                                labelText: AppMessage.lastNameLabel,
+                                hintText: AppMessage.lastNameHint,
+                                keyboardType: TextInputType.text,
+                                validate: (value) =>
+                                    FieldValidation().validateLastName(value!),
+                              ),
+                              SizedBox(height: 3.h),
+                              CommonTextFormFieldModule(
+                                controller: signUpScreenController
+                                    .homeAddressFieldController,
+                                labelText: AppMessage.homeAddressLabel,
+                                hintText: AppMessage.homeAddressHint,
+                                keyboardType: TextInputType.text,
+                                validate: (value) => FieldValidation()
+                                    .validateHomeAddress(value!),
+                              ),
+                              SizedBox(height: 3.h),
+                              CommonTextFormFieldModule(
+                                controller: signUpScreenController
+                                    .phoneNumberFieldController,
+                                labelText: AppMessage.phoneNumberLabel,
+                                hintText: AppMessage.phoneNumberHint,
+                                keyboardType: TextInputType.phone,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly,
+                                ],
+                                maxLength: 10,
+                                validate: (value) => FieldValidation()
+                                    .validateMobileNumber(value!),
+                              ),
+                              SizedBox(height: 3.h),
+                              RichText(
+                                textAlign: TextAlign.left,
+                                maxLines: null,
+                                text: TextSpan(
+                                  text: AppMessage.bySignUp,
+                                  style: TextStyleConfig.textStyle(
+                                    // fontWeight: FontWeight.w600,
+                                    textColor: Colors.grey.shade400,
+                                    fontSize: 10.sp,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: " ${AppMessage.tAndC} ",
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          Fluttertoast.showToast(
+                                              msg: "Coming Soon!!");
+                                        },
+                                      style: TextStyleConfig.textStyle(
+                                        textColor: Colors.blue,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 10.sp,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: AppMessage.and,
+                                      style: TextStyleConfig.textStyle(
+                                        textColor: Colors.grey.shade400,
+                                        // fontWeight: FontWeight.w600,
+                                        fontSize: 10.sp,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: " ${AppMessage.privacyPolicy}",
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          Fluttertoast.showToast(
+                                              msg: "Coming Soon!!");
+                                        },
+                                      style: TextStyleConfig.textStyle(
+                                        textColor: Colors.blue,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 10.sp,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              TextSpan(
-                                text: AppMessage.and,
-                                style: TextStyleConfig.textStyle(
-                                  textColor: Colors.grey.shade400,
-                                  // fontWeight: FontWeight.w600,
-                                  fontSize: 10.sp,
-                                ),
-                              ),
-                              TextSpan(
-                                text: " ${AppMessage.privacyPolicy}",
-                                recognizer: TapGestureRecognizer()..onTap = () {
-                                  Fluttertoast.showToast(msg: "Coming Soon!!");
+                              SizedBox(height: 3.h),
+                              CommonButtonModule(
+                                onTap: () {
+                                  if (signUpScreenController
+                                      .formKey.currentState!
+                                      .validate()) {
+                                    signUpScreenController.formKey.currentState!
+                                        .reset();
+                                    Get.to(() => OtpVerificationScreen());
+                                  }
                                 },
-                                style: TextStyleConfig.textStyle(
-                                  textColor: Colors.blue,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 10.sp,
-                                ),
+                                labelText: AppMessage.signUp,
                               ),
                             ],
-                          ),
+                          ).commonAllSidePadding(10),
                         ),
-
-                        SizedBox(height: 3.h),
-                        CommonButtonModule(
-                          onTap: () {
-                            if(signUpScreenController.formKey.currentState!.validate()){
-                              signUpScreenController.formKey.currentState!.reset();
-                              Get.offAll(()=> OtpVerificationScreen());
-                            }
-                          },
-                          labelText: AppMessage.signUp,
-                        ),
-
-                      ],
-                    ).commonAllSidePadding(10),
-                  ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          ),
         ),
       ),
     );
