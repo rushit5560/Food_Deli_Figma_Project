@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:food_deli_driver/common_widgets/app_bar_modules/app_bar_title_module.dart';
 import 'package:food_deli_driver/common_widgets/button_module.dart';
 import 'package:food_deli_driver/common_widgets/common_loader.dart';
 import 'package:food_deli_driver/common_widgets/text_form_field_module.dart';
 import 'package:food_deli_driver/controllers/sign_in_screen_controller.dart';
+import 'package:food_deli_driver/screens/otp_verification_screen/otp_verification_screen.dart';
 import 'package:food_deli_driver/screens/sign_up_screen/sign_up_screen.dart';
 import 'package:food_deli_driver/utils/extensions.dart';
 import 'package:food_deli_driver/utils/messaging.dart';
@@ -11,8 +13,7 @@ import 'package:food_deli_driver/utils/styles.dart';
 import 'package:food_deli_driver/utils/validator.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-
-import 'sign_in_screen_widgets.dart';
+import 'package:flutter/gestures.dart';
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({Key? key}) : super(key: key);
@@ -22,6 +23,7 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Obx(
           () => signInScreenController.isLoading.value
@@ -31,14 +33,18 @@ class SignInScreen extends StatelessWidget {
             child: Column(
                     // crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      const SignInAppBarModule()
+                      /// AppBar - Common Module
+                      AppBarTitleModule(headerText: AppMessage.logIn)
                           .commonSymmetricPadding(horizontal: 10, vertical: 10),
                       Divider(thickness: 1, color: Colors.grey.withOpacity(0.3)),
+
+
                       Expanded(
                         child: SingleChildScrollView(
                           child: Column(
                             children: [
                               SizedBox(height: 6.h),
+                              /// Email Field
                               CommonTextFormFieldModule(
                                 controller:
                                     signInScreenController.emailFieldController,
@@ -49,6 +55,7 @@ class SignInScreen extends StatelessWidget {
                                     FieldValidation().validateEmail(value!),
                               ),
                               SizedBox(height: 6.h),
+                              /// Password Field
                               CommonTextFormFieldModule(
                                 controller: signInScreenController
                                     .passwordFieldController,
@@ -88,6 +95,9 @@ class SignInScreen extends StatelessWidget {
                                   children: [
                                     TextSpan(
                                       text: " ${AppMessage.tAndC} ",
+                                      recognizer: TapGestureRecognizer()..onTap = () {
+                                        Fluttertoast.showToast(msg: "Coming Soon!!");
+                                      },
                                       style: TextStyleConfig.textStyle(
                                         textColor: Colors.blue,
                                         fontWeight: FontWeight.w600,
@@ -104,6 +114,9 @@ class SignInScreen extends StatelessWidget {
                                     ),
                                     TextSpan(
                                       text: " ${AppMessage.privacyPolicy}",
+                                      recognizer: TapGestureRecognizer()..onTap = () {
+                                        Fluttertoast.showToast(msg: "Coming Soon!!");
+                                      },
                                       style: TextStyleConfig.textStyle(
                                         textColor: Colors.blue,
                                         fontWeight: FontWeight.w600,
@@ -133,15 +146,45 @@ class SignInScreen extends StatelessWidget {
                                 ],
                               ),
                               SizedBox(height: 6.h),
+                              /// Login Button - Common Module
                               CommonButtonModule(
                                 onTap: () {
-                                  if(signInScreenController.formKey.currentState!.validate()){
-                                    signInScreenController.emailFieldController.clear();
-                                    signInScreenController.passwordFieldController.clear();
-                                    Get.to(()=> SignUpScreen());
+                                  if(signInScreenController.formKey.currentState!.validate()) {
+                                    signInScreenController.formKey.currentState!.reset();
+                                    // Get.to(()=> OtpVerificationScreen());
                                   }
                                 },
                                 labelText: AppMessage.logIn,
+                              ),
+
+                              SizedBox(height: 2.h),
+
+                              RichText(
+                                textAlign: TextAlign.center,
+                                text: TextSpan(
+                                  text: AppMessage.donTHaveAccountText,
+                                  style: TextStyleConfig.textStyle(
+                                    // fontWeight: FontWeight.w600,
+                                    textColor: Colors.grey.shade400,
+                                    fontSize: 10.sp,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: " ${AppMessage.signUp} ",
+                                      recognizer: TapGestureRecognizer()..onTap = () {
+                                        Get.to(()=> SignUpScreen());
+                                      },
+                                      onEnter: (event) {
+                                        Get.to(()=> SignUpScreen());
+                                      },
+                                      style: TextStyleConfig.textStyle(
+                                        textColor: Colors.blue,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 10.sp,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ).commonAllSidePadding(10),

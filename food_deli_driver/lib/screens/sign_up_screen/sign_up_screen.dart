@@ -1,17 +1,19 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:food_deli_driver/common_widgets/app_bar_modules/app_bar_with_back_button_module.dart';
 import 'package:food_deli_driver/common_widgets/button_module.dart';
 import 'package:food_deli_driver/common_widgets/common_loader.dart';
 import 'package:food_deli_driver/common_widgets/text_form_field_module.dart';
 import 'package:food_deli_driver/controllers/sign_up_screen_controller.dart';
+import 'package:food_deli_driver/screens/otp_verification_screen/otp_verification_screen.dart';
 import 'package:food_deli_driver/utils/extensions.dart';
 import 'package:food_deli_driver/utils/messaging.dart';
 import 'package:food_deli_driver/utils/styles.dart';
 import 'package:food_deli_driver/utils/validator.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-
-import 'sign_up_screen_widgets.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);
@@ -20,13 +22,18 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Obx(
           () => signUpScreenController.isLoading.value
           ? CommonLoader().showLoader()
           : Column(
             children: [
-              SignUpAppBarModule().commonSymmetricPadding(horizontal: 10, vertical: 10),
+              /// AppBar - Common Module
+              AppBarWithBackButtonModule(
+                headerText: AppMessage.signUp,
+                backButtonOnTap: () => Get.back(),
+              ).commonSymmetricPadding(horizontal: 10, vertical: 10),
               Divider(thickness: 1, color: Colors.grey.withOpacity(0.3)),
 
               Expanded(
@@ -70,6 +77,9 @@ class SignUpScreen extends StatelessWidget {
                           labelText: AppMessage.phoneNumberLabel,
                           hintText: AppMessage.phoneNumberHint,
                           keyboardType: TextInputType.phone,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
                           maxLength: 10,
                           validate: (value) => FieldValidation().validateMobileNumber(value!),
                         ),
@@ -88,6 +98,9 @@ class SignUpScreen extends StatelessWidget {
                             children: [
                               TextSpan(
                                 text: " ${AppMessage.tAndC} ",
+                                recognizer: TapGestureRecognizer()..onTap = () {
+                                  Fluttertoast.showToast(msg: "Coming Soon!!");
+                                },
                                 style: TextStyleConfig.textStyle(
                                   textColor: Colors.blue,
                                   fontWeight: FontWeight.w600,
@@ -104,6 +117,9 @@ class SignUpScreen extends StatelessWidget {
                               ),
                               TextSpan(
                                 text: " ${AppMessage.privacyPolicy}",
+                                recognizer: TapGestureRecognizer()..onTap = () {
+                                  Fluttertoast.showToast(msg: "Coming Soon!!");
+                                },
                                 style: TextStyleConfig.textStyle(
                                   textColor: Colors.blue,
                                   fontWeight: FontWeight.w600,
@@ -118,12 +134,8 @@ class SignUpScreen extends StatelessWidget {
                         CommonButtonModule(
                           onTap: () {
                             if(signUpScreenController.formKey.currentState!.validate()){
-                              // Get.to(()=> SignUpScreen());
-                              signUpScreenController.firstNameFieldController.clear();
-                              signUpScreenController.lastNameFieldController.clear();
-                              signUpScreenController.homeAddressFieldController.clear();
-                              signUpScreenController.phoneNumberFieldController.clear();
-                              Fluttertoast.showToast(msg: "SignUp Successfully.");
+                              signUpScreenController.formKey.currentState!.reset();
+                              Get.offAll(()=> OtpVerificationScreen());
                             }
                           },
                           labelText: AppMessage.signUp,

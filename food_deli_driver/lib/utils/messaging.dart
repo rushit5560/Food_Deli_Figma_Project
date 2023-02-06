@@ -2,6 +2,7 @@ class AppMessage {
   // AppBar Text
   static String logIn = "Login";
   static String signUp = "Sign Up";
+  static String verificationCode = "Verification Code";
 
 
   // TextField Label Text
@@ -28,6 +29,8 @@ class AppMessage {
   static String and = "and";
   static String privacyPolicy = "Privacy Policy";
   static String forgotPassword = "Forgot Password ?";
+  static String verificationScreenText = "Please enter below details to create account.";
+  static String donTHaveAccountText = "Don't have an account ? ";
 
   // Validations
   static String emailAddressIsRequired = 'Please enter email address.';

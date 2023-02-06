@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:food_deli_driver/utils/styles.dart';
 
 class CommonTextFormFieldModule extends StatelessWidget {
@@ -12,6 +13,7 @@ class CommonTextFormFieldModule extends StatelessWidget {
   TextInputType? keyboardType;
   bool readOnly;
   int? maxLength;
+  List<TextInputFormatter>? inputFormatters;
 
 
   CommonTextFormFieldModule({
@@ -26,6 +28,7 @@ class CommonTextFormFieldModule extends StatelessWidget {
     this.keyboardType,
     this.readOnly = false,
     this.maxLength,
+    this.inputFormatters,
   }) : super(key: key);
 
   @override
@@ -37,6 +40,7 @@ class CommonTextFormFieldModule extends StatelessWidget {
       keyboardType: keyboardType,
       readOnly: readOnly,
       maxLength: maxLength,
+      inputFormatters: inputFormatters,
       cursorColor: Colors.grey.shade700,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
