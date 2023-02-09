@@ -17,14 +17,16 @@ import 'package:garb_and_earn_driver/utils/styles.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
+import 'forgot_password_screen_widgets.dart';
+
 class ForgotPasswordScreen extends StatelessWidget {
   ForgotPasswordScreen({Key? key}) : super(key: key);
-
   final forgotPasswordScreenController = Get.put(ForgotPasswordScreenController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Obx(
         ()=> forgotPasswordScreenController.isLoading.value
           ? CommonLoader().showLoader()
@@ -69,7 +71,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                             textAlign: TextAlign.left,
                             maxLines: null,
                             text: TextSpan(
-                                text: "headerText",
+                                text: AppMessage.phoneNumberLabel,
                                 style: TextStyleConfig.textStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 16,
@@ -87,6 +89,9 @@ class ForgotPasswordScreen extends StatelessWidget {
                             // inputFormatters: inputFormatters,
                             cursorColor: Colors.grey.shade700,
                             obscuringCharacter: "*",
+                            onChanged: (value) {
+                              forgotPasswordScreenController.loadUI();
+                            },
                             autovalidateMode: AutovalidateMode.onUserInteraction,
                             decoration: InputDecoration(
                               enabledBorder: InputFieldStyles().inputBorder(),
@@ -104,7 +109,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                                   onTap: () {
                                     // _openCupertinoCountryPicker();
                                     // _buildCountryPickerDropdown(filtered: true);
-                                    _openFilteredCupertinoCountryPicker();
+                                    // _openFilteredCupertinoCountryPicker();
                                     log('Click');
                                   },
                                   child: _buildCupertinoSelectedItem(_selectedCupertinoCountry),
@@ -117,7 +122,11 @@ class ForgotPasswordScreen extends StatelessWidget {
                           //   onTap: _openCupertinoCountryPicker,
                           // ),
                         ],
-                      ),
+                      ).commonSymmetricPadding(horizontal: 15),
+
+                      Expanded(child: Container()),
+
+                      ContinueButtonModule().commonOnlyPadding(left: 15, right: 15, bottom: 15),
 
                     ],
                   ),
@@ -178,6 +187,7 @@ class ForgotPasswordScreen extends StatelessWidget {
   Widget _buildCupertinoSelectedItem(Country country) {
     return IntrinsicHeight(
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           CountryPickerUtils.getDefaultFlagImage(country),
           // SizedBox(width: 8.0),
@@ -304,18 +314,21 @@ class ForgotPasswordScreen extends StatelessWidget {
   //       ),
   //     );
 
-  void _openFilteredCupertinoCountryPicker() => showCupertinoModalPopup<void>(
-      context: Get.context!,
-      builder: (BuildContext context) {
-        return CountryPickerCupertino(
-          backgroundColor: Colors.white,
-          pickerSheetHeight: 200.0,
-          initialCountry: _selectedFilteredCupertinoCountry,
-          onValuePicked: (Country country) =>
-              _selectedFilteredCupertinoCountry = country,
-
-          // itemFilter: (c) => ['AR', 'DE', 'GB', 'CN'].contains(c.isoCode),
-        );
-      });
+  // void _openFilteredCupertinoCountryPicker() => showCupertinoModalPopup<void>(
+  //     context: Get.context!,
+  //     builder: (BuildContext context) {
+  //       return CountryPickerCupertino(
+  //         backgroundColor: Colors.white,
+  //         pickerSheetHeight: 200.0,
+  //         initialCountry: _selectedFilteredCupertinoCountry,
+  //         onValuePicked: (Country country) {
+  //           _selectedFilteredCupertinoCountry = country;
+  //           log('${_selectedFilteredCupertinoCountry.name}');
+  //           forgotPasswordScreenController.loadUI();
+  //         },
+  //
+  //         // itemFilter: (c) => ['AR', 'DE', 'GB', 'CN'].contains(c.isoCode),
+  //       );
+  //     });
 
 }

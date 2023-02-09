@@ -1,4 +1,3 @@
-
 import 'messaging.dart';
 
 class FieldValidation {
@@ -56,7 +55,6 @@ class FieldValidation {
     }
   }
 
-
   String? validateMobileNumber(String value) {
     String pattern = AppMessage.patternRegX;
     RegExp regExp = RegExp(pattern);
@@ -67,6 +65,28 @@ class FieldValidation {
       return AppMessage.mobileNumberMustTenDigits;
     } else if (!regExp.hasMatch(value)) {
       return AppMessage.mobileNumberMustBeDigits;
+    } else {
+      return null;
+    }
+  }
+
+  String? validateNewPassword(String value) {
+    if (value.isEmpty) {
+      return AppMessage.newPasswordIsRequired;
+    } else if (value.length < 8) {
+      return AppMessage.newPasswordMustBeAtleast8CharactersLong;
+    } else {
+      return null;
+    }
+  }
+
+  String? validateConfirmPassword(String value, String passwordValue) {
+    if (value.isEmpty) {
+      return AppMessage.confirmPasswordIsRequired;
+    } else if (value.length < 8) {
+      return AppMessage.confirmPasswordMustBeAtLeast8CharactersLong;
+    } else if (value != passwordValue) {
+      return AppMessage.newPasswordAndConfirmPasswordMustBeSame;
     } else {
       return null;
     }

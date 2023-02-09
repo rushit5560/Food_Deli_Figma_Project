@@ -9,6 +9,7 @@ class HeaderAndContentModule extends StatelessWidget {
   Color? headerTextColor;
   double? contextTextSize;
   Color? contentTextColor;
+  bool? centerAlignment = false;
 
   HeaderAndContentModule({
     Key? key,
@@ -18,12 +19,13 @@ class HeaderAndContentModule extends StatelessWidget {
     this.headerTextColor,
     this.contextTextSize,
     this.contentTextColor,
+    this.centerAlignment,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+      crossAxisAlignment: centerAlignment == true ? CrossAxisAlignment.center : CrossAxisAlignment.stretch,
       children: [
         Text(
           headerText,
