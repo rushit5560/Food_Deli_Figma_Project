@@ -5,7 +5,6 @@ import 'package:food_deli_driver/common_widgets/button_module.dart';
 import 'package:food_deli_driver/common_widgets/common_loader.dart';
 import 'package:food_deli_driver/common_widgets/text_form_field_module.dart';
 import 'package:food_deli_driver/controllers/sign_in_screen_controller.dart';
-import 'package:food_deli_driver/screens/otp_verification_screen/otp_verification_screen.dart';
 import 'package:food_deli_driver/screens/profile_screen/profile_screen.dart';
 import 'package:food_deli_driver/screens/sign_up_screen/sign_up_screen.dart';
 import 'package:food_deli_driver/utils/extensions.dart';
@@ -45,17 +44,19 @@ class SignInScreen extends StatelessWidget {
                         child: SingleChildScrollView(
                           child: Column(
                             children: [
-                              SizedBox(height: 6.h),
+                              SizedBox(height: 3.h),
 
                               /// Email Field
                               CommonTextFormFieldModule(
                                 controller:
                                     signInScreenController.emailFieldController,
-                                labelText: AppMessage.emailAddressLabel,
+                                // labelText: AppMessage.emailAddressLabel,
                                 hintText: AppMessage.emailAddressHint,
                                 keyboardType: TextInputType.emailAddress,
                                 validate: (value) =>
                                     FieldValidation().validateEmail(value!),
+                                headerText: AppMessage.emailAddressLabel,
+                                mandatoryText: '',
                               ),
                               SizedBox(height: 6.h),
 
@@ -63,7 +64,7 @@ class SignInScreen extends StatelessWidget {
                               CommonTextFormFieldModule(
                                 controller: signInScreenController
                                     .passwordFieldController,
-                                labelText: AppMessage.passwordLabel,
+                                // labelText: AppMessage.passwordLabel,
                                 hintText: AppMessage.passwordHint,
                                 obscureText: signInScreenController
                                     .isPasswordObscure.value,
@@ -85,6 +86,8 @@ class SignInScreen extends StatelessWidget {
                                     color: Colors.grey.shade700,
                                   ),
                                 ),
+                                headerText: AppMessage.passwordLabel,
+                                mandatoryText: '',
                               ),
                               SizedBox(height: 6.h),
                               RichText(
