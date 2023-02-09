@@ -14,6 +14,7 @@ class CommonTextFormFieldModule extends StatelessWidget {
   bool obscureText;
   final FormFieldValidator? validate;
   Function()? onPressed;
+  Function()? onChange;
   Widget? suffixIcon;
   TextInputType? keyboardType;
   bool readOnly;
@@ -35,6 +36,7 @@ class CommonTextFormFieldModule extends StatelessWidget {
     this.readOnly = false,
     this.maxLength,
     this.inputFormatters,
+    this.onChange,
   }) : super(key: key);
 
   @override
@@ -73,6 +75,7 @@ class CommonTextFormFieldModule extends StatelessWidget {
           inputFormatters: inputFormatters,
           cursorColor: Colors.grey.shade700,
           obscuringCharacter: "*",
+          onChanged: (value)=> onChange!(),
           autovalidateMode: AutovalidateMode.onUserInteraction,
           decoration: InputDecoration(
             enabledBorder: InputFieldStyles().inputBorder(),
