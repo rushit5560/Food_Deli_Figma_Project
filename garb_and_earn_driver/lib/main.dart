@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:garb_and_earn_driver/screens/auth_screens/sign_in_screen/sign_in_screen.dart';
+import 'package:garb_and_earn_driver/screens/auth_screens/sign_up_screen/sign_up_screen.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-
-import 'screens/auth_screens/sign_in_screen/sign_in_screen.dart';
 
 void main() {
   runApp(const MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -19,10 +18,10 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           title: 'Food Delivery Driver - Figma',
           debugShowCheckedModeBanner: false,
-          home: SignInScreen(),
+          // home: SignInScreen(),
+          home: SignUpScreen(),
         );
       },
-
     );
   }
 }

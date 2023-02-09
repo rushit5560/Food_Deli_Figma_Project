@@ -9,4 +9,5 @@ class AppColors {
   static const profileAppbarColor = Color(0xFF0262E8);
   static const colorBlue = Color(0xFF3D6DFF);
   static const colorLightBlue = Color(0x983D6DFF);
+  static const blueColor2 = Colors.blue;
 }
