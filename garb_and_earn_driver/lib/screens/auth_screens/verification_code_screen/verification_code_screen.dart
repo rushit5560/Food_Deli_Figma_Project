@@ -6,6 +6,8 @@ import 'package:garb_and_earn_driver/common_widgets/app_bar_modules/app_bar_titl
 import 'package:garb_and_earn_driver/common_widgets/common_loader.dart';
 import 'package:garb_and_earn_driver/common_widgets/header_and_content_module.dart';
 import 'package:garb_and_earn_driver/controllers/auth_controllers/verification_code_screen_controller.dart';
+import 'package:garb_and_earn_driver/screens/auth_screens/reset_password_screen/reset_password_screen.dart';
+import 'package:garb_and_earn_driver/screens/auth_screens/successfully_changed_screen/successfully_changed_screen.dart';
 import 'package:garb_and_earn_driver/utils/app_images.dart';
 import 'package:garb_and_earn_driver/utils/colors.dart';
 import 'package:garb_and_earn_driver/utils/common_functions/common_functions.dart';
@@ -20,8 +22,6 @@ class VerificationCodeScreen extends StatelessWidget {
   VerificationCodeScreen({Key? key}) : super(key: key);
   final verificationCodeScreenController =
       Get.put(VerificationCodeScreenController());
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -233,7 +233,8 @@ class VerificationCodeScreen extends StatelessWidget {
                                   Obx(
                                     () => Text(
                                       // "00:${verificationCodeScreenController.start}",
-                                      verificationCodeScreenController.time.value,
+                                      verificationCodeScreenController
+                                          .time.value,
                                       // '${verificationCodeScreenController.duration.inMinutes}:${verificationCodeScreenController.duration.inSeconds}',
                                       style: TextStyleConfig.textStyle(
                                           textColor: AppColors.colorBlue,
@@ -294,15 +295,23 @@ class NextButtonModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (screenController.formKey.currentState!.validate()) {}
+        if (screenController.formKey.currentState!.validate()) {
+          if (VerificationCodeOption.forgotPasswordCode ==
+              screenController.verificationCodeOption) {
+            Get.to(() => ResetPasswordScreen());
+          }
+        }
       },
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: screenController.isButtonOpen.value
-              ? AppColors.colorBlue
-              : AppColors.colorLightBlue,
-        ),
+            borderRadius: BorderRadius.circular(12),
+            color:
+                // screenController.isButtonOpen.value
+                // ?
+
+                AppColors.colorBlue
+            // : AppColors.colorLightBlue,
+            ),
         child: Center(
           child: Text(
             AppMessage.nextText,

@@ -1,7 +1,4 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:garb_and_earn_driver/common_widgets/app_bar_modules/app_bar_title_module.dart';
 import 'package:garb_and_earn_driver/common_widgets/common_loader.dart';
 import 'package:garb_and_earn_driver/common_widgets/header_and_content_module.dart';
@@ -52,7 +49,6 @@ class ResetPasswordScreen extends StatelessWidget {
                           height: 2,
                         ),
 
-
                         Expanded(
                           child: Column(
                             children: [
@@ -61,33 +57,44 @@ class ResetPasswordScreen extends StatelessWidget {
                               /// Header & Content Module
                               HeaderAndContentModule(
                                 headerText: AppMessage.createNewPassText,
-                                contentText: AppMessage.createNewPassContentText,
+                                contentText:
+                                    AppMessage.createNewPassContentText,
                               ).commonSymmetricPadding(horizontal: 15),
                               SizedBox(height: 6.h),
 
-
                               /// New Password Field
                               CommonTextFormFieldModule(
-                                controller: resetPasswordScreenController.newPassFieldController,
+                                controller: resetPasswordScreenController
+                                    .newPassFieldController,
                                 // labelText: AppMessage.passwordLabel,
                                 hintText: AppMessage.passwordHint,
-                                obscureText: resetPasswordScreenController.isNewPassShow.value,
-                                validate: (value) => FieldValidation().validateNewPassword(value!),
+                                obscureText: resetPasswordScreenController
+                                    .isNewPassShow.value,
+                                validate: (value) => FieldValidation()
+                                    .validateNewPassword(value!),
                                 onChange: () {
-                                  if(resetPasswordScreenController.formKey.currentState!.validate()) {
-                                    resetPasswordScreenController.isButtonOpen.value = true;
+                                  if (resetPasswordScreenController
+                                      .formKey.currentState!
+                                      .validate()) {
+                                    resetPasswordScreenController
+                                        .isButtonOpen.value = true;
                                   } else {
-                                    resetPasswordScreenController.isButtonOpen.value = false;
+                                    resetPasswordScreenController
+                                        .isButtonOpen.value = false;
                                   }
                                   resetPasswordScreenController.loadUI();
-                                  },
+                                },
                                 suffixIcon: IconButton(
                                   onPressed: () {
-                                    resetPasswordScreenController.isNewPassShow.value = !resetPasswordScreenController.isNewPassShow.value;
+                                    resetPasswordScreenController
+                                            .isNewPassShow.value =
+                                        !resetPasswordScreenController
+                                            .isNewPassShow.value;
                                     resetPasswordScreenController.loadUI();
                                   },
                                   icon: Icon(
-                                    resetPasswordScreenController.isNewPassShow.value
+                                    resetPasswordScreenController
+                                            .isNewPassShow.value
                                         ? Icons.visibility
                                         : Icons.visibility_off,
                                     color: Colors.grey,
@@ -100,27 +107,41 @@ class ResetPasswordScreen extends StatelessWidget {
 
                               /// Confirm New Password Field
                               CommonTextFormFieldModule(
-                                controller: resetPasswordScreenController.newConfirmPassFieldController,
+                                controller: resetPasswordScreenController
+                                    .newConfirmPassFieldController,
                                 // labelText: AppMessage.passwordLabel,
                                 hintText: AppMessage.passwordHint,
                                 onChange: () {
-
-                                  if(resetPasswordScreenController.formKey.currentState!.validate()) {
-                                    resetPasswordScreenController.isButtonOpen.value = true;
+                                  if (resetPasswordScreenController
+                                      .formKey.currentState!
+                                      .validate()) {
+                                    resetPasswordScreenController
+                                        .isButtonOpen.value = true;
                                   } else {
-                                    resetPasswordScreenController.isButtonOpen.value = false;
+                                    resetPasswordScreenController
+                                        .isButtonOpen.value = false;
                                   }
                                   resetPasswordScreenController.loadUI();
-                                  },
-                                obscureText: resetPasswordScreenController.isNewConfirmPassShow.value,
-                                validate: (value) => FieldValidation().validateConfirmPassword(value!,resetPasswordScreenController.newPassFieldController.text.trim()),
+                                },
+                                obscureText: resetPasswordScreenController
+                                    .isNewConfirmPassShow.value,
+                                validate: (value) => FieldValidation()
+                                    .validateConfirmPassword(
+                                        value!,
+                                        resetPasswordScreenController
+                                            .newPassFieldController.text
+                                            .trim()),
                                 suffixIcon: IconButton(
                                   onPressed: () {
-                                    resetPasswordScreenController.isNewConfirmPassShow.value = !resetPasswordScreenController.isNewConfirmPassShow.value;
+                                    resetPasswordScreenController
+                                            .isNewConfirmPassShow.value =
+                                        !resetPasswordScreenController
+                                            .isNewConfirmPassShow.value;
                                     resetPasswordScreenController.loadUI();
                                   },
                                   icon: Icon(
-                                    resetPasswordScreenController.isNewConfirmPassShow.value
+                                    resetPasswordScreenController
+                                            .isNewConfirmPassShow.value
                                         ? Icons.visibility
                                         : Icons.visibility_off,
                                     color: Colors.grey,
@@ -132,16 +153,11 @@ class ResetPasswordScreen extends StatelessWidget {
 
                               Expanded(child: Container()),
 
-                              ResetButtonModule().commonOnlyPadding(left: 15, right: 15, bottom: 15),
-
-
+                              ResetButtonModule().commonOnlyPadding(
+                                  left: 15, right: 15, bottom: 15),
                             ],
                           ),
                         ),
-
-
-
-
                       ],
                     ),
                   ),
@@ -158,17 +174,18 @@ class ResetButtonModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        if(screenController.formKey.currentState!.validate()) {
-          Get.to(()=> SuccessFullyChangedScreen());
+      onTap: () {
+        if (screenController.formKey.currentState!.validate()) {
+          Get.to(() => SuccessFullyChangedScreen());
         }
       },
       child: Obx(
-        ()=> Container(
+        () => Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: screenController.isButtonOpen.value
-                ? AppColors.colorBlue : AppColors.colorLightBlue,
+                ? AppColors.colorBlue
+                : AppColors.colorLightBlue,
           ),
           child: Center(
             child: Text(

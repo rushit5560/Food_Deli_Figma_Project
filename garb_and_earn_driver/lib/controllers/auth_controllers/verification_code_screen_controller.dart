@@ -1,9 +1,7 @@
 import 'dart:async';
-import 'dart:developer';
-
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:garb_and_earn_driver/utils/enum.dart';
-import 'package:get/get.dart';
 
 class VerificationCodeScreenController extends GetxController {
   VerificationCodeOption verificationCodeOption = Get.arguments[0];
@@ -26,7 +24,6 @@ class VerificationCodeScreenController extends GetxController {
   RxBool isButtonOpen = false.obs;
 
   Duration duration = const Duration(seconds: 180);
- 
 
   startTimer(int seconds) {
     const duration = Duration(seconds: 1);
@@ -37,15 +34,12 @@ class VerificationCodeScreenController extends GetxController {
       } else {
         int minites = remainingSeconds ~/ 60;
         int secondes = (remainingSeconds % 60);
-        time.value = minites.toString().padLeft(2, '0') +
-            ":" +
-            secondes.toString().padLeft(2, '0');
+        time.value =
+            "${minites.toString().padLeft(2, '0')}:${secondes.toString().padLeft(2, '0')}";
         remainingSeconds--;
       }
     });
   }
-
-  
 
   loadUI() {
     isLoading(true);
@@ -65,5 +59,4 @@ class VerificationCodeScreenController extends GetxController {
     startTimer(180);
     super.onReady();
   }
-
 }
