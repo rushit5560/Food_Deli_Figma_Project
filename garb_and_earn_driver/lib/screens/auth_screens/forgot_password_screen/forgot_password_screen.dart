@@ -4,7 +4,6 @@ import 'package:country_pickers/country.dart';
 import 'package:country_pickers/country_pickers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:garb_and_earn_driver/common_widgets/app_bar_modules/app_bar_title_module.dart';
 import 'package:garb_and_earn_driver/common_widgets/common_loader.dart';
 import 'package:garb_and_earn_driver/common_widgets/header_and_content_module.dart';
@@ -16,133 +15,142 @@ import 'package:garb_and_earn_driver/utils/messaging.dart';
 import 'package:garb_and_earn_driver/utils/styles.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-
 import 'forgot_password_screen_widgets.dart';
 
+// ignore: must_be_immutable
 class ForgotPasswordScreen extends StatelessWidget {
   ForgotPasswordScreen({Key? key}) : super(key: key);
-  final forgotPasswordScreenController = Get.put(ForgotPasswordScreenController());
+  final forgotPasswordScreenController =
+      Get.put(ForgotPasswordScreenController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Obx(
-        ()=> forgotPasswordScreenController.isLoading.value
-          ? CommonLoader().showLoader()
-        : GestureDetector(
-          onTap: ()=> hideKeyBoardFunction(),
-          child: SafeArea(
-            child: Column(
-              children: [
-                /// AppBar - Common Module
-                AppBarTitleModule(
-                    centerIcon: AppImages.driverLogoImage,
-                  leadingWidget: const Icon(
+        () => forgotPasswordScreenController.isLoading.value
+            ? CommonLoader().showLoader()
+            : GestureDetector(
+                onTap: () => hideKeyBoardFunction(),
+                child: SafeArea(
+                  child: Column(
+                    children: [
+                      /// AppBar - Common Module
+                      AppBarTitleModule(
+                        centerIcon: AppImages.driverLogoImage,
+                        leadingWidget: const Icon(
                           Icons.arrow_back_ios_new_rounded,
                           size: 20,
                         ),
-                        leadingOnTap: ()=> Get.back(),
-                ),
-                Divider(
-                  thickness: 3,
-                  color: Colors.grey.withOpacity(0.3),
-                  height: 2,
-                ),
+                        leadingOnTap: () => Get.back(),
+                      ),
+                      Divider(
+                        thickness: 3,
+                        color: Colors.grey.withOpacity(0.3),
+                        height: 2,
+                      ),
 
+                      Expanded(
+                        child: Column(
+                          children: [
+                            SizedBox(height: 6.h),
 
-                Expanded(
-                  child: Column(
-                    children: [
-                      SizedBox(height: 6.h),
+                            /// Header & Content Module
+                            HeaderAndContentModule(
+                              headerText: AppMessage.forgotPassword,
+                              contentText: AppMessage.forgotPassContentText,
+                            ).commonSymmetricPadding(horizontal: 15),
+                            SizedBox(height: 6.h),
 
-                      /// Header & Content Module
-                      HeaderAndContentModule(
-                        headerText: AppMessage.forgotPassword,
-                        contentText: AppMessage.forgotPassContentText,
-                      ).commonSymmetricPadding(horizontal: 15),
-                      SizedBox(height: 6.h),
-
-                      /// Country Dropdown Module
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          RichText(
-                            textAlign: TextAlign.left,
-                            maxLines: null,
-                            text: TextSpan(
-                                text: AppMessage.phoneNumberLabel,
-                                style: TextStyleConfig.textStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16,
-                                ),
-                            ),
-                          ).commonSymmetricPadding(vertical: 4),
-                          SizedBox(height: 1.h),
-                          TextFormField(
-                            controller: forgotPasswordScreenController.phoneNumberFieldController,
-                            // obscureText: obscureText,
-                            // validator: validate,
-                            keyboardType: TextInputType.phone,
-                            // readOnly: readOnly,
-                            // maxLength: maxLength,
-                            // inputFormatters: inputFormatters,
-                            cursorColor: Colors.grey.shade700,
-                            obscuringCharacter: "*",
-                            onChanged: (value) {
-                              forgotPasswordScreenController.loadUI();
-                            },
-                            autovalidateMode: AutovalidateMode.onUserInteraction,
-                            decoration: InputDecoration(
-                              enabledBorder: InputFieldStyles().inputBorder(),
-                              focusedBorder: InputFieldStyles().inputBorder(),
-                              errorBorder: InputFieldStyles().errorBorder(),
-                              focusedErrorBorder: InputFieldStyles().errorBorder(),
-                              counterText: '',
-                              // labelText: labelText,
-                              hintText: "Enter your phone number",
-                              hintStyle: const TextStyle(color: Colors.grey),
-                              labelStyle: TextStyle(color: Colors.grey.shade700),
-                              // suffixIcon: suffixIcon,
-
-                              prefixIcon: GestureDetector(
-                                  onTap: () {
-                                    // _openCupertinoCountryPicker();
-                                    // _buildCountryPickerDropdown(filtered: true);
-                                    // _openFilteredCupertinoCountryPicker();
-                                    log('Click');
+                            /// Country Dropdown Module
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                RichText(
+                                  textAlign: TextAlign.left,
+                                  maxLines: null,
+                                  text: TextSpan(
+                                    text: AppMessage.phoneNumberLabel,
+                                    style: TextStyleConfig.textStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ).commonSymmetricPadding(vertical: 4),
+                                SizedBox(height: 1.h),
+                                TextFormField(
+                                  controller: forgotPasswordScreenController
+                                      .phoneNumberFieldController,
+                                  // obscureText: obscureText,
+                                  // validator: validate,
+                                  keyboardType: TextInputType.phone,
+                                  // readOnly: readOnly,
+                                  // maxLength: maxLength,
+                                  // inputFormatters: inputFormatters,
+                                  cursorColor: Colors.grey.shade700,
+                                  obscuringCharacter: "*",
+                                  onChanged: (value) {
+                                    forgotPasswordScreenController.loadUI();
                                   },
-                                  child: _buildCupertinoSelectedItem(_selectedCupertinoCountry),
-                              ),
-                            ),
-                          ),
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  decoration: InputDecoration(
+                                    enabledBorder:
+                                        InputFieldStyles().inputBorder(),
+                                    focusedBorder:
+                                        InputFieldStyles().inputBorder(),
+                                    errorBorder:
+                                        InputFieldStyles().errorBorder(),
+                                    focusedErrorBorder:
+                                        InputFieldStyles().errorBorder(),
+                                    counterText: '',
+                                    // labelText: labelText,
+                                    hintText: "Enter your phone number",
+                                    hintStyle:
+                                        const TextStyle(color: Colors.grey),
+                                    labelStyle:
+                                        TextStyle(color: Colors.grey.shade700),
+                                    // suffixIcon: suffixIcon,
 
-                          // ListTile(
-                          //   title: _buildCupertinoSelectedItem(_selectedCupertinoCountry),
-                          //   onTap: _openCupertinoCountryPicker,
-                          // ),
-                        ],
-                      ).commonSymmetricPadding(horizontal: 15),
+                                    prefixIcon: GestureDetector(
+                                      onTap: () {
+                                        // _openCupertinoCountryPicker();
+                                        // _buildCountryPickerDropdown(filtered: true);
+                                        // _openFilteredCupertinoCountryPicker();
+                                        log('Click');
+                                      },
+                                      child: _buildCupertinoSelectedItem(
+                                          _selectedCupertinoCountry),
+                                    ),
+                                  ),
+                                ),
 
-                      Expanded(child: Container()),
+                                // ListTile(
+                                //   title: _buildCupertinoSelectedItem(_selectedCupertinoCountry),
+                                //   onTap: _openCupertinoCountryPicker,
+                                // ),
+                              ],
+                            ).commonSymmetricPadding(horizontal: 15),
 
-                      ContinueButtonModule().commonOnlyPadding(left: 15, right: 15, bottom: 15),
+                            Expanded(child: Container()),
 
+                            ContinueButtonModule().commonOnlyPadding(
+                                left: 15, right: 15, bottom: 15),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
-
-
-              ],
-            ),
-          ),
-        ),
+              ),
       ),
     );
   }
 
-  Country _selectedCupertinoCountry = CountryPickerUtils.getCountryByIsoCode('tr');
-  Country _selectedFilteredCupertinoCountry = CountryPickerUtils.getCountryByIsoCode('DE');
+  Country _selectedCupertinoCountry =
+      CountryPickerUtils.getCountryByIsoCode('tr');
+  Country _selectedFilteredCupertinoCountry =
+      CountryPickerUtils.getCountryByIsoCode('DE');
 
   void _openCupertinoCountryPicker() => showCupertinoModalPopup<void>(
       context: Get.context!,
@@ -157,7 +165,6 @@ class ForgotPasswordScreen extends StatelessWidget {
             _selectedCupertinoCountry = country;
             forgotPasswordScreenController.loadUI();
           },
-
           priorityList: [
             CountryPickerUtils.getCountryByIsoCode('TR'),
             CountryPickerUtils.getCountryByIsoCode('US'),
@@ -191,7 +198,10 @@ class ForgotPasswordScreen extends StatelessWidget {
         children: <Widget>[
           CountryPickerUtils.getDefaultFlagImage(country),
           // SizedBox(width: 8.0),
-          const Icon(Icons.keyboard_arrow_down_rounded, color: Colors.black,),
+          const Icon(
+            Icons.keyboard_arrow_down_rounded,
+            color: Colors.black,
+          ),
           const VerticalDivider(
             width: 2,
             color: Colors.grey,
@@ -207,9 +217,9 @@ class ForgotPasswordScreen extends StatelessWidget {
   /// New
   _buildCountryPickerDropdown(
       {bool filtered = false,
-        bool sortedByIsoCode = false,
-        bool hasPriorityList = false,
-        bool hasSelectedItemBuilder = false}) {
+      bool sortedByIsoCode = false,
+      bool hasPriorityList = false,
+      bool hasSelectedItemBuilder = false}) {
     double dropdownButtonWidth = MediaQuery.of(Get.context!).size.width * 0.5;
     //respect dropdown button icon size
     // double dropdownItemWidth = dropdownButtonWidth - 30;
@@ -222,11 +232,12 @@ class ForgotPasswordScreen extends StatelessWidget {
             initialValue: 'AR',
             itemBuilder: _buildDropdownItem,
             // itemFilter:  ['AR', 'DE', 'GB', 'CN'].contains(c.isoCode),
-            priorityList:[
+            priorityList: [
               CountryPickerUtils.getCountryByIsoCode('GB'),
               CountryPickerUtils.getCountryByIsoCode('CN'),
             ],
-            sortComparator: (Country a, Country b) => a.isoCode.compareTo(b.isoCode),
+            sortComparator: (Country a, Country b) =>
+                a.isoCode.compareTo(b.isoCode),
             onValuePicked: (Country country) {
               print("${country.name}");
             },
@@ -250,19 +261,19 @@ class ForgotPasswordScreen extends StatelessWidget {
   }
 
   Widget _buildDropdownItem(Country country) => Container(
-    child: Row(
-      children: <Widget>[
-        CountryPickerUtils.getDefaultFlagImage(country),
-        SizedBox(
-          width: 8.0,
+        child: Row(
+          children: <Widget>[
+            CountryPickerUtils.getDefaultFlagImage(country),
+            SizedBox(
+              width: 8.0,
+            ),
+            Text("+${country.phoneCode}(${country.isoCode})"),
+          ],
         ),
-        Text("+${country.phoneCode}(${country.isoCode})"),
-      ],
-    ),
-  );
+      );
 
   Widget _buildDropdownSelectedItemBuilder(
-      Country country, double dropdownItemWidth) =>
+          Country country, double dropdownItemWidth) =>
       SizedBox(
           width: dropdownItemWidth,
           child: Padding(
@@ -275,15 +286,15 @@ class ForgotPasswordScreen extends StatelessWidget {
                   ),
                   Expanded(
                       child: Text(
-                        '${country.name}',
-                        style: TextStyle(
-                            color: Colors.red, fontWeight: FontWeight.bold),
-                      )),
+                    '${country.name}',
+                    style: TextStyle(
+                        color: Colors.red, fontWeight: FontWeight.bold),
+                  )),
                 ],
               )));
 
   Widget _buildDropdownItemWithLongText(
-      Country country, double dropdownItemWidth) =>
+          Country country, double dropdownItemWidth) =>
       SizedBox(
         width: dropdownItemWidth,
         child: Padding(

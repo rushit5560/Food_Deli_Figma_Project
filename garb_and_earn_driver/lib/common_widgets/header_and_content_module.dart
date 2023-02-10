@@ -39,6 +39,7 @@ class HeaderAndContentModule extends StatelessWidget {
         Text(
           contentText,
           style: TextStyle(
+            
             fontSize: contextTextSize ?? 12.sp,
             color: contentTextColor ?? Colors.grey,
             fontWeight: FontWeight.w500,

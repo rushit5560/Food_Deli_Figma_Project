@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:garb_and_earn_driver/common_widgets/app_bar_modules/app_bar_title_module.dart';
@@ -7,6 +9,7 @@ import 'package:garb_and_earn_driver/controllers/auth_controllers/verification_c
 import 'package:garb_and_earn_driver/utils/app_images.dart';
 import 'package:garb_and_earn_driver/utils/colors.dart';
 import 'package:garb_and_earn_driver/utils/common_functions/common_functions.dart';
+import 'package:garb_and_earn_driver/utils/enum.dart';
 import 'package:garb_and_earn_driver/utils/extensions.dart';
 import 'package:garb_and_earn_driver/utils/messaging.dart';
 import 'package:garb_and_earn_driver/utils/styles.dart';
@@ -17,6 +20,8 @@ class VerificationCodeScreen extends StatelessWidget {
   VerificationCodeScreen({Key? key}) : super(key: key);
   final verificationCodeScreenController =
       Get.put(VerificationCodeScreenController());
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +38,13 @@ class VerificationCodeScreen extends StatelessWidget {
                     key: verificationCodeScreenController.formKey,
                     child: Column(
                       children: [
-                        /// AppBar - Common Module
+                        // AppBar - Common Module
                         AppBarTitleModule(
+                            leadingWidget: const Icon(
+                              Icons.arrow_back_ios_new_rounded,
+                              size: 20,
+                            ),
+                            leadingOnTap: () => Get.back(),
                             centerIcon: AppImages.driverLogoImage),
                         Divider(
                           thickness: 3,
@@ -49,8 +59,16 @@ class VerificationCodeScreen extends StatelessWidget {
 
                               /// Header Text Module
                               HeaderAndContentModule(
-                                headerText: AppMessage.forgotPassword,
-                                contentText: AppMessage.forgotPassShowContent,
+                                headerText: verificationCodeScreenController
+                                            .verificationCodeOption ==
+                                        VerificationCodeOption
+                                            .forgotPasswordCode
+                                    ? AppMessage.forgotPassword
+                                    : AppMessage.verificationCode,
+                                contentText: verificationCodeScreenController
+                                        .varificationCode.value
+                                    ? AppMessage.forgotPassShowContent
+                                    : AppMessage.forgotPassErrorShowContent,
                               ).commonSymmetricPadding(horizontal: 15),
                               SizedBox(height: 6.h),
                               Text(
@@ -61,6 +79,7 @@ class VerificationCodeScreen extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: 1.h),
+
                               /// 4 Digit Box Code
                               Row(
                                 mainAxisAlignment:
@@ -198,6 +217,7 @@ class VerificationCodeScreen extends StatelessWidget {
                                 ],
                               ).commonSymmetricPadding(horizontal: 10.w),
                               SizedBox(height: 2.5.h),
+
                               /// Counter Text - Timer
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -210,19 +230,23 @@ class VerificationCodeScreen extends StatelessWidget {
                                         fontSize: 13.sp),
                                   ),
                                   SizedBox(width: 1.w),
-                                  Text(
-                                    '${verificationCodeScreenController.duration.inMinutes}:${verificationCodeScreenController.duration.inSeconds}',
-                                    style: TextStyleConfig.textStyle(
-                                        textColor: AppColors.colorBlue,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13.sp),
+                                  Obx(
+                                    () => Text(
+                                      // "00:${verificationCodeScreenController.start}",
+                                      verificationCodeScreenController.time.value,
+                                      // '${verificationCodeScreenController.duration.inMinutes}:${verificationCodeScreenController.duration.inSeconds}',
+                                      style: TextStyleConfig.textStyle(
+                                          textColor: AppColors.colorBlue,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 13.sp),
+                                    ),
                                   ),
                                 ],
                               ),
                               Expanded(child: Container()),
 
-                              NextButtonModule().commonOnlyPadding(left: 15, right: 15, bottom: 15),
-
+                              NextButtonModule().commonOnlyPadding(
+                                  left: 15, right: 15, bottom: 15),
                             ],
                           ),
                         ),
@@ -234,6 +258,32 @@ class VerificationCodeScreen extends StatelessWidget {
       ),
     );
   }
+
+  // void startTimer() {
+  //   const onsec = Duration(seconds: 1);
+  //   Timer _timer = Timer.periodic(onsec, (timer) {
+  //     if (start == 0) {
+  //       verificationCodeScreenController.isLoading(true);
+
+  //       timer.cancel();
+  //       wait = false;
+  //       verificationCodeScreenController.isLoading(false);
+  //     } else {
+  //       verificationCodeScreenController.isLoading(true);
+
+  //       start--;
+  //       verificationCodeScreenController.isLoading(false);
+  //     }
+  //   });
+  // }
+
+  // void setData(String verificationId) {
+  //   verificationCodeScreenController.isLoading(true);
+  //   verificationIdFinal = verificationId;
+  //   verificationCodeScreenController.isLoading(false);
+
+  //   startTimer();
+  // }
 }
 
 class NextButtonModule extends StatelessWidget {
@@ -244,9 +294,7 @@ class NextButtonModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (screenController.formKey.currentState!.validate()) {
-
-        }
+        if (screenController.formKey.currentState!.validate()) {}
       },
       child: Container(
         decoration: BoxDecoration(

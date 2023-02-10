@@ -3,6 +3,7 @@ class AppMessage {
   static String logIn = "Login";
   static String signUp = "Sign Up";
   static String verificationCode = "Verification Code";
+  static String continueButtonText ="Continue" ;
 
   // TextField Label Text
   static String emailAddressLabel = "Email address";
@@ -103,4 +104,7 @@ class AppMessage {
   static String oneNumberValidatorText = "Include at least one number";
   static String alreadyAUser = "Already a user?";
   static String login = "Login";
+
+  
+
 }

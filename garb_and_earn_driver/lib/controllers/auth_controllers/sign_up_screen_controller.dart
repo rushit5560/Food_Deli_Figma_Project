@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:garb_and_earn_driver/utils/messaging.dart';
 import 'package:get/get.dart';
 
 class SignUpScreenController extends GetxController {
@@ -7,13 +6,14 @@ class SignUpScreenController extends GetxController {
   RxBool isSuccessStatus = false.obs;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  TextEditingController emailFieldController = TextEditingController(text: "");
-  TextEditingController passwordFieldController =
-      TextEditingController(text: "");
   TextEditingController firstNameFieldController =
-      TextEditingController(text: "");
+      TextEditingController(text: "sss");
   TextEditingController lastNameFieldController =
-      TextEditingController(text: "");
+      TextEditingController(text: "cvb");
+  TextEditingController emailFieldController =
+      TextEditingController(text: "fff@gmail.com");
+  TextEditingController passwordFieldController =
+      TextEditingController(text: "Rsdf@200122");
 
   RxBool isCharacterLength = false.obs;
   RxBool isUpperLowerCase = false.obs;

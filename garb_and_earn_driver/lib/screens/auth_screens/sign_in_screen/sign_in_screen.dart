@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -39,6 +41,8 @@ class SignInScreen extends StatelessWidget {
                       children: [
                         /// AppBar - Common Module
                         AppBarTitleModule(
+                            leadingWidget: const Icon(Icons.arrow_back_ios),
+                            leadingOnTap: () => Get.back(),
                             centerIcon: AppImages.driverLogoImage),
                         Divider(
                           thickness: 3,
@@ -204,7 +208,6 @@ class SignInScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-
                       ],
                     ),
                   ),
@@ -217,21 +220,26 @@ class SignInScreen extends StatelessWidget {
 
 class AuthButtonModule extends StatelessWidget {
   AuthButtonModule({Key? key}) : super(key: key);
-  final screenController = Get.find<SignInScreenController>();
+  final signInScreenController = Get.find<SignInScreenController>();
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (screenController.isAgree.value) {
+        if (signInScreenController.formKey.currentState!.validate()) {
+          if (signInScreenController.isAgree.value) {
+            Get.to(() => ForgotPasswordScreen());
+          } else {
+            Fluttertoast.showToast(msg: "Please accept terms and condition");
+          }
         } else {
-          Fluttertoast.showToast(msg: "Please accept terms and condition");
+          log("message");
         }
       },
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: screenController.isAgree.value
+          color: signInScreenController.isAgree.value
               ? AppColors.colorBlue
               : AppColors.colorLightBlue,
         ),

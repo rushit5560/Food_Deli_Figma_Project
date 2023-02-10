@@ -6,7 +6,8 @@ class ForgotPasswordScreenController extends GetxController {
   RxBool isSuccessStatus = false.obs;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  TextEditingController phoneNumberFieldController = TextEditingController();
+  TextEditingController phoneNumberFieldController =
+      TextEditingController(text: "1234567890");
 
   loadUI() {
     isLoading(true);

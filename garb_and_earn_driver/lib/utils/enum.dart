@@ -1,0 +1,1 @@
+enum VerificationCodeOption { forgotPasswordCode, verificationCode }

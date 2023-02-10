@@ -5,8 +5,10 @@ import 'package:garb_and_earn_driver/common_widgets/header_and_content_module.da
 import 'package:garb_and_earn_driver/common_widgets/text_form_field_module.dart';
 import 'package:garb_and_earn_driver/controllers/auth_controllers/sign_up_screen_controller.dart';
 import 'package:garb_and_earn_driver/screens/auth_screens/sign_in_screen/sign_in_screen.dart';
+import 'package:garb_and_earn_driver/screens/auth_screens/verification_code_screen/verification_code_screen.dart';
 import 'package:garb_and_earn_driver/utils/app_images.dart';
 import 'package:garb_and_earn_driver/utils/colors.dart';
+import 'package:garb_and_earn_driver/utils/enum.dart';
 import 'package:garb_and_earn_driver/utils/extensions.dart';
 import 'package:garb_and_earn_driver/utils/messaging.dart';
 import 'package:garb_and_earn_driver/utils/styles.dart';
@@ -32,8 +34,8 @@ class SignUpScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       AppBarTitleModule(
-                          leadingWidget: const Icon(Icons.arrow_back_ios),
-                          leadingOnTap: () => Get.back(),
+                          // leadingWidget: const Icon(Icons.arrow_back_ios),
+                          // leadingOnTap: () => Get.back(),
                           centerIcon: AppImages.driverLogoImage),
                       Divider(
                         thickness: 3,
@@ -361,7 +363,8 @@ class AuthButtonModule extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (signUpScreenController.formKey.currentState!.validate()) {
-          if (signUpScreenController.isCharacterLength.value) {}
+          Get.to(() => VerificationCodeScreen(),
+              arguments: [VerificationCodeOption.verificationCode, ""]);
         }
 
         // else {
@@ -377,7 +380,7 @@ class AuthButtonModule extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            AppMessage.logIn,
+            AppMessage.signUp,
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: AppColors.whiteColor,
