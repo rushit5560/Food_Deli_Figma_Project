@@ -5,6 +5,7 @@ import 'package:garb_and_earn_driver/common_widgets/header_and_content_module.da
 import 'package:garb_and_earn_driver/common_widgets/text_form_field_module.dart';
 import 'package:garb_and_earn_driver/controllers/auth_controllers/sign_up_screen_controller.dart';
 import 'package:garb_and_earn_driver/screens/auth_screens/sign_in_screen/sign_in_screen.dart';
+import 'package:garb_and_earn_driver/screens/auth_screens/sign_in_screen/sign_in_screen_widgets.dart';
 import 'package:garb_and_earn_driver/screens/auth_screens/verification_code_screen/verification_code_screen.dart';
 import 'package:garb_and_earn_driver/utils/app_images.dart';
 import 'package:garb_and_earn_driver/utils/colors.dart';
@@ -157,36 +158,22 @@ class SignUpScreen extends StatelessWidget {
                               SizedBox(height: 3.h),
                               Row(
                                 children: [
-                                  Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: signUpScreenController
-                                                .passwordFieldController
-                                                .text
-                                                .isEmpty
-                                            ? Colors.grey
-                                            : signUpScreenController
-                                                    .isCharacterLength.value
-                                                ? Colors.green
-                                                : Colors.red),
-                                    child: Center(
-                                      child: Icon(
-                                        signUpScreenController
-                                                .isCharacterLength.value
-                                            ? Icons.check
-                                            : Icons.close,
-                                        color: Colors.white,
-                                      ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: ValidateContainerModule(
+                                      fieldController: signUpScreenController.passwordFieldController,
+                                      isTextValidate: signUpScreenController.isCharacterLength,
                                     ),
                                   ),
                                   SizedBox(width: 2.w),
-                                  Text(
-                                    AppMessage.charValidatorText,
-                                    style: TextStyleConfig.textStyle(
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.w500),
+                                  Expanded(
+                                    flex: 9,
+                                    child: Text(
+                                      AppMessage.charValidatorText,
+                                      style: TextStyleConfig.textStyle(
+                                          fontSize: 12.sp,
+                                          fontWeight: FontWeight.w500),
+                                    ),
                                   )
                                 ],
                               ).commonSymmetricPadding(horizontal: 15),
@@ -195,29 +182,9 @@ class SignUpScreen extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     flex: 1,
-                                    child: Container(
-                                      height: 30,
-                                      width: 30,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: signUpScreenController
-                                                  .passwordFieldController
-                                                  .text
-                                                  .isEmpty
-                                              ? Colors.grey
-                                              : signUpScreenController
-                                                      .isUpperLowerCase.value
-                                                  ? Colors.green
-                                                  : Colors.red),
-                                      child: Center(
-                                        child: Icon(
-                                          signUpScreenController
-                                                  .isUpperLowerCase.value
-                                              ? Icons.check
-                                              : Icons.close,
-                                          color: Colors.white,
-                                        ),
-                                      ),
+                                    child: ValidateContainerModule(
+                                      fieldController: signUpScreenController.passwordFieldController,
+                                      isTextValidate: signUpScreenController.isUpperLowerCase,
                                     ),
                                   ),
                                   SizedBox(width: 2.w),
@@ -237,30 +204,11 @@ class SignUpScreen extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     flex: 1,
-                                    child: Container(
-                                      height: 30,
-                                      width: 30,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: signUpScreenController
-                                                  .passwordFieldController
-                                                  .text
-                                                  .isEmpty
-                                              ? Colors.grey
-                                              : signUpScreenController
-                                                      .isSpecialChar.value
-                                                  ? Colors.green
-                                                  : Colors.red),
-                                      child: Center(
-                                        child: Icon(
-                                          signUpScreenController
-                                                  .isSpecialChar.value
-                                              ? Icons.check
-                                              : Icons.close,
-                                          color: Colors.white,
-                                        ),
-                                      ),
+                                    child: ValidateContainerModule(
+                                      fieldController: signUpScreenController.passwordFieldController,
+                                      isTextValidate: signUpScreenController.isSpecialChar,
                                     ),
+
                                   ),
                                   SizedBox(width: 2.w),
                                   Expanded(
@@ -279,29 +227,9 @@ class SignUpScreen extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     flex: 1,
-                                    child: Container(
-                                      height: 30,
-                                      width: 30,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: signUpScreenController
-                                                  .passwordFieldController
-                                                  .text
-                                                  .isEmpty
-                                              ? Colors.grey
-                                              : signUpScreenController
-                                                      .isOneNumber.value
-                                                  ? Colors.green
-                                                  : Colors.red),
-                                      child: Center(
-                                        child: Icon(
-                                          signUpScreenController
-                                                  .isOneNumber.value
-                                              ? Icons.check
-                                              : Icons.close,
-                                          color: Colors.white,
-                                        ),
-                                      ),
+                                    child: ValidateContainerModule(
+                                      fieldController: signUpScreenController.passwordFieldController,
+                                      isTextValidate: signUpScreenController.isOneNumber,
                                     ),
                                   ),
                                   SizedBox(width: 2.w),

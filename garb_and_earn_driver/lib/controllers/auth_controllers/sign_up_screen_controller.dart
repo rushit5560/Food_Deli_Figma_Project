@@ -7,13 +7,13 @@ class SignUpScreenController extends GetxController {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController firstNameFieldController =
-      TextEditingController(text: "sss");
+      TextEditingController(text: "John");
   TextEditingController lastNameFieldController =
-      TextEditingController(text: "cvb");
+      TextEditingController(text: "Smith");
   TextEditingController emailFieldController =
-      TextEditingController(text: "fff@gmail.com");
+      TextEditingController(text: "johnsmith@gmail.com");
   TextEditingController passwordFieldController =
-      TextEditingController(text: "Rsdf@200122");
+      TextEditingController(text: "");
 
   RxBool isCharacterLength = false.obs;
   RxBool isUpperLowerCase = false.obs;

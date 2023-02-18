@@ -74,7 +74,8 @@ class VerificationCodeScreen extends StatelessWidget {
                               Text(
                                 "Enter Code",
                                 style: TextStyleConfig.textStyle(
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "Inter-SemiBold",
                                   fontSize: 16,
                                 ),
                               ),
@@ -98,7 +99,10 @@ class VerificationCodeScreen extends StatelessWidget {
                                         }
                                       },
                                       style:
-                                          Theme.of(context).textTheme.headline6,
+                                          Theme.of(context).textTheme.headline6!.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontFamily: "Inter-SemiBold",
+                                          ),
                                       keyboardType: TextInputType.number,
                                       textAlign: TextAlign.center,
                                       decoration: InputDecoration(
@@ -130,7 +134,10 @@ class VerificationCodeScreen extends StatelessWidget {
                                         }
                                       },
                                       style:
-                                          Theme.of(context).textTheme.headline6,
+                                      Theme.of(context).textTheme.headline6!.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: "Inter-SemiBold",
+                                      ),
                                       keyboardType: TextInputType.number,
                                       textAlign: TextAlign.center,
                                       decoration: InputDecoration(
@@ -162,7 +169,10 @@ class VerificationCodeScreen extends StatelessWidget {
                                         }
                                       },
                                       style:
-                                          Theme.of(context).textTheme.headline6,
+                                      Theme.of(context).textTheme.headline6!.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: "Inter-SemiBold",
+                                      ),
                                       keyboardType: TextInputType.number,
                                       textAlign: TextAlign.center,
                                       decoration: InputDecoration(
@@ -194,7 +204,10 @@ class VerificationCodeScreen extends StatelessWidget {
                                         // }
                                       },
                                       style:
-                                          Theme.of(context).textTheme.headline6,
+                                      Theme.of(context).textTheme.headline6!.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: "Inter-SemiBold",
+                                      ),
                                       keyboardType: TextInputType.number,
                                       textAlign: TextAlign.center,
                                       decoration: InputDecoration(
@@ -227,15 +240,15 @@ class VerificationCodeScreen extends StatelessWidget {
                                     style: TextStyleConfig.textStyle(
                                         textColor: Colors.black,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 13.sp),
+                                        fontSize: 13.sp,
+                                      fontFamily: "Inter-SemiBold",
+                                    ),
                                   ),
                                   SizedBox(width: 1.w),
                                   Obx(
                                     () => Text(
-                                      // "00:${verificationCodeScreenController.start}",
                                       verificationCodeScreenController
                                           .time.value,
-                                      // '${verificationCodeScreenController.duration.inMinutes}:${verificationCodeScreenController.duration.inSeconds}',
                                       style: TextStyleConfig.textStyle(
                                           textColor: AppColors.colorBlue,
                                           fontWeight: FontWeight.bold,

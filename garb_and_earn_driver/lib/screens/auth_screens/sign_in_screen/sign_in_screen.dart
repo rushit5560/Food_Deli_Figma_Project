@@ -1,10 +1,8 @@
 import 'dart:developer';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:garb_and_earn_driver/common_widgets/app_bar_modules/app_bar_title_module.dart';
-import 'package:garb_and_earn_driver/common_widgets/button_module.dart';
 import 'package:garb_and_earn_driver/common_widgets/common_loader.dart';
 import 'package:garb_and_earn_driver/common_widgets/header_and_content_module.dart';
 import 'package:garb_and_earn_driver/common_widgets/text_form_field_module.dart';
@@ -119,8 +117,9 @@ class SignInScreen extends StatelessWidget {
                                       AppMessage.forgotPassword,
                                       style: TextStyleConfig.textStyle(
                                         textColor: AppColors.colorBlue,
-                                        fontWeight: FontWeight.w500,
+                                        fontWeight: FontWeight.bold,
                                         fontSize: 13.sp,
+                                        fontFamily: "Inter-SemiBold"
                                       ),
                                     ),
                                   ),
@@ -154,7 +153,7 @@ class SignInScreen extends StatelessWidget {
                                         text: AppMessage.byLogin,
                                         style: TextStyleConfig.textStyle(
                                           // fontWeight: FontWeight.w600,
-                                          textColor: Colors.grey,
+                                          textColor: AppColors.colorGrey,
                                           fontSize: 9.sp,
                                         ),
                                         children: [
@@ -167,14 +166,15 @@ class SignInScreen extends StatelessWidget {
                                               },
                                             style: TextStyleConfig.textStyle(
                                               textColor: AppColors.colorBlue,
-                                              fontWeight: FontWeight.w500,
+                                              fontWeight: FontWeight.bold,
                                               fontSize: 9.sp,
+                                              fontFamily: "Inter-SemiBold",
                                             ),
                                           ),
                                           TextSpan(
                                             text: AppMessage.and,
                                             style: TextStyleConfig.textStyle(
-                                              textColor: Colors.grey,
+                                              textColor: AppColors.colorGrey,
                                               // fontWeight: FontWeight.w600,
                                               fontSize: 9.sp,
                                             ),
@@ -189,8 +189,9 @@ class SignInScreen extends StatelessWidget {
                                               },
                                             style: TextStyleConfig.textStyle(
                                               textColor: AppColors.colorBlue,
-                                              fontWeight: FontWeight.w500,
+                                              fontWeight: FontWeight.bold,
                                               fontSize: 9.sp,
+                                              fontFamily: "Inter-SemiBold",
                                             ),
                                           ),
                                         ],

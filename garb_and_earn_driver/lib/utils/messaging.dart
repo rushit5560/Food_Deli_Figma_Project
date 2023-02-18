@@ -96,7 +96,7 @@ class AppMessage {
   static String createYourAccount = "Create your account";
   static String signUpCredentialText = "Please enter the details to countinue.";
   static String email = "Email";
-  static String charValidatorText = "8 + characters";
+  static String charValidatorText = "8+ characters";
   static String upperLowerCaseValidatorText =
       "Include Upper and Lower case letters";
 

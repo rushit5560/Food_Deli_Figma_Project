@@ -31,17 +31,17 @@ class HeaderAndContentModule extends StatelessWidget {
           headerText,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: headerTextSize ?? 18.sp,
+            fontSize: headerTextSize ?? 19.sp,
             color: headerTextColor ?? AppColors.blackColor,
+            fontFamily: "Inter-SemiBold"
           ),
         ),
         SizedBox(height: 1.h),
         Text(
           contentText,
           style: TextStyle(
-            
             fontSize: contextTextSize ?? 12.sp,
-            color: contentTextColor ?? Colors.grey,
+            color: contentTextColor ?? AppColors.colorGrey,
             fontWeight: FontWeight.w500,
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:garb_and_earn_driver/utils/colors.dart';
 import 'package:garb_and_earn_driver/utils/extensions.dart';
 import 'package:garb_and_earn_driver/utils/styles.dart';
 import 'package:sizer/sizer.dart';
@@ -50,8 +51,9 @@ class CommonTextFormFieldModule extends StatelessWidget {
           text: TextSpan(
               text: headerText,
               style: TextStyleConfig.textStyle(
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w600,
                 fontSize: 16,
+                fontFamily: "Inter-SemiBold"
               ),
               children: [
                 TextSpan(
@@ -77,6 +79,9 @@ class CommonTextFormFieldModule extends StatelessWidget {
           obscuringCharacter: "*",
           onChanged: (value)=> onChange!(),
           autovalidateMode: AutovalidateMode.onUserInteraction,
+          style: TextStyle(
+            fontFamily: "Inter-SemiBold"
+          ),
           decoration: InputDecoration(
             enabledBorder: InputFieldStyles().inputBorder(),
             focusedBorder: InputFieldStyles().inputBorder(),
@@ -85,7 +90,7 @@ class CommonTextFormFieldModule extends StatelessWidget {
             counterText: '',
             // labelText: labelText,
             hintText: hintText,
-            hintStyle: const TextStyle(color: Colors.grey),
+            hintStyle: const TextStyle(color: AppColors.colorGreyHint),
             labelStyle: TextStyle(color: Colors.grey.shade700),
             suffixIcon: suffixIcon,
           ),

@@ -36,6 +36,7 @@ class SuccessFullyChangedScreen extends StatelessWidget {
                     height: Get.width * 0.16,
                     width: Get.width * 0.16,
                   ),
+                  const SizedBox(height: 10),
                   HeaderAndContentModule(
                     headerText: AppMessage.successFullyChangePasswordText,
                     contentText:

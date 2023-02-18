@@ -6,7 +6,7 @@ class InputFieldStyles {
   InputBorder inputBorder() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
-      borderSide: BorderSide(color: Colors.grey.shade400),
+      borderSide: BorderSide(color: Colors.grey.shade400, width: 1.5),
       // borderSide: const BorderSide(width: 1.0),
     );
   }
@@ -28,13 +28,13 @@ class TextStyleConfig {
     Color textColor = Colors.black,
     FontWeight fontWeight = FontWeight.normal,
     double fontSize = 15.0,
-    // String fontFamily = "Roboto",
+    String fontFamily = "Inter",
   }) {
     return TextStyle(
       color: textColor,
       fontSize: fontSize,
       fontWeight: fontWeight,
-      // fontFamily: fontFamily,
+      fontFamily: fontFamily,
     );
   }
 

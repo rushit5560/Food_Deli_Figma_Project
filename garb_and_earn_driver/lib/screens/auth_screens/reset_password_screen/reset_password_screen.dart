@@ -194,6 +194,7 @@ class ResetButtonModule extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 color: AppColors.whiteColor,
                 fontSize: 14.sp,
+                fontFamily: "Inter-SemiBold",
               ),
             ).commonSymmetricPadding(vertical: 15),
           ),

@@ -74,6 +74,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                                     style: TextStyleConfig.textStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 16,
+                                      fontFamily: "Inter-SemiBold"
                                     ),
                                   ),
                                 ).commonSymmetricPadding(vertical: 4),
@@ -94,6 +95,10 @@ class ForgotPasswordScreen extends StatelessWidget {
                                   },
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
+                                  style: const TextStyle(
+                                    fontFamily: "Inter-SemiBolds",
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                   decoration: InputDecoration(
                                     enabledBorder:
                                         InputFieldStyles().inputBorder(),
